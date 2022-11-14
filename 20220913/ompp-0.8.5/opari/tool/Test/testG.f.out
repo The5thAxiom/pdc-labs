@@ -1,0 +1,72 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "testG.f"
+       program testG
+         integer me, glob
+         integer omp_get_thread_num
+
+      call POMP_Parallel_fork(53)
+#line 5 "testG.f"
+         !$omp parallel private(me,glob)
+      call POMP_Parallel_begin(53)
+#line 6 "testG.f"
+           me = omp_get_thread_num()
+           write(*,*) "hello from", me
+
+      call POMP_Single_enter(54)
+#line 9 "testG.f"
+           !$omp single
+      call POMP_Single_begin(54)
+#line 10 "testG.f"
+             glob = me
+             write(*,*) "single1 from", me
+      call POMP_Single_end(54)
+#line 12 "testG.f"
+           !$omp end single copyprivate(glob)
+      call POMP_Barrier_enter(54)
+!$omp barrier
+      call POMP_Barrier_exit(54)
+      call POMP_Single_exit(54)
+#line 13 "testG.f"
+
+           write(*,*) "hello from", me
+
+      call POMP_Single_enter(55)
+#line 16 "testG.f"
+           !$omp single 
+      call POMP_Single_begin(55)
+#line 17 "testG.f"
+             write(*,*) "single2 from", me
+      call POMP_Single_end(55)
+#line 18 "testG.f"
+           !$omp end single  nowait
+      call POMP_Barrier_enter(55)
+!$omp barrier
+      call POMP_Barrier_exit(55)
+      call POMP_Single_exit(55)
+#line 19 "testG.f"
+
+      call POMP_Single_enter(56)
+#line 20 "testG.f"
+           !$omp single
+      call POMP_Single_begin(56)
+#line 21 "testG.f"
+             write(*,*) "single3 from", me
+      call POMP_Single_end(56)
+#line 22 "testG.f"
+           !$omp end single nowait
+      call POMP_Single_exit(56)
+#line 23 "testG.f"
+
+      call POMP_Barrier_enter(53)
+!$omp barrier
+      call POMP_Barrier_exit(53)
+      call POMP_Parallel_end(53)
+#line 24 "testG.f"
+         !$omp end parallel
+      call POMP_Parallel_join(53)
+#line 25 "testG.f"
+       end program testG

@@ -1,0 +1,42 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test9.c.opari.inc"
+#line 1 "test9.c"
+int main() {
+  int i;
+
+POMP_Init();
+#line 8 "test9.c"
+
+POMP_Off();
+#line 10 "test9.c"
+
+POMP_Begin(&omp_rd_24);
+#line 12 "test9.c"
+
+POMP_Parallel_fork(&omp_rd_25);
+#line 13 "test9.c"
+#pragma omp parallel POMP_DLIST_00025
+{ POMP_Parallel_begin(&omp_rd_25);
+#line 14 "test9.c"
+      i = 9;
+POMP_Barrier_enter(&omp_rd_25);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_25);
+POMP_Parallel_end(&omp_rd_25); }
+POMP_Parallel_join(&omp_rd_25);
+#line 15 "test9.c"
+
+POMP_End(&omp_rd_24);
+#line 17 "test9.c"
+
+POMP_On();
+#line 19 "test9.c"
+
+POMP_Finalize();
+#line 21 "test9.c"
+
+}

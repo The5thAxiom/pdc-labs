@@ -1,0 +1,35 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test5.f90"
+      program test5
+      integer i, j, k, l
+      call POMP_Parallel_fork(23)
+#line 3 "test5.f90"
+      !$omp parallel                          & !parallel
+      !$omp & private(i,j)                      !parallel
+      call POMP_Parallel_begin(23)
+      call POMP_Do_enter(23)
+#line 3 "test5.f90"
+      !$omp   do                              &    
+      !$omp & lastprivate(k)                  &    
+      !$omp & lastprivate                     &    
+      !$omp & (                               &    
+      !$omp &   l                             &    
+      !$omp & ) schedule(dynamic              &    
+      !$omp   )
+      do i=1,4
+        write(*,*) "pdo", i
+      enddo
+!$omp end do nowait
+      call POMP_Barrier_enter(23)
+!$omp barrier
+      call POMP_Barrier_exit(23)
+      call POMP_Do_exit(23)
+      call POMP_Parallel_end(23)
+!$omp end parallel
+      call POMP_Parallel_join(23)
+#line 16 "test5.f90"
+      end

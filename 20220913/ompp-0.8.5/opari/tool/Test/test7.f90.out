@@ -1,0 +1,78 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test7.f90"
+      program test7
+      integer, dimension(10,10) :: AA, BB, CC
+
+      call POMP_Parallel_fork(24)
+#line 4 "test7.f90"
+      !$omp parallel
+      call POMP_Parallel_begin(24)
+#line 5 "test7.f90"
+      call POMP_Workshare_enter(25)
+#line 5 "test7.f90"
+      !$omp workshare
+        AA = BB
+        BB = CC
+#line 8 "test7.f90"
+      !$omp end workshare nowait
+      call POMP_Barrier_enter(25)
+!$omp barrier
+      call POMP_Barrier_exit(25)
+      call POMP_Workshare_exit(25)
+#line 9 "test7.f90"
+      call POMP_Barrier_enter(24)
+!$omp barrier
+      call POMP_Barrier_exit(24)
+      call POMP_Parallel_end(24)
+#line 9 "test7.f90"
+      !$omp end parallel
+      call POMP_Parallel_join(24)
+#line 10 "test7.f90"
+
+      call POMP_Parallel_fork(26)
+#line 11 "test7.f90"
+      !$omp parallel
+      call POMP_Parallel_begin(26)
+#line 12 "test7.f90"
+      call POMP_Workshare_enter(27)
+#line 12 "test7.f90"
+      !$omp workshare
+        AA = BB
+        BB = CC
+#line 15 "test7.f90"
+      !$omp end workshare nowait
+      call POMP_Workshare_exit(27)
+#line 16 "test7.f90"
+      call POMP_Barrier_enter(26)
+!$omp barrier
+      call POMP_Barrier_exit(26)
+      call POMP_Parallel_end(26)
+#line 16 "test7.f90"
+      !$omp end parallel
+      call POMP_Parallel_join(26)
+#line 17 "test7.f90"
+
+      call POMP_Parallel_fork(28)
+#line 18 "test7.f90"
+      !$omp parallel          
+      call POMP_Parallel_begin(28)
+      call POMP_Workshare_enter(28)
+#line 18 "test7.f90"
+      !$omp          workshare
+        AA = BB
+        BB = CC
+!$omp end workshare nowait
+      call POMP_Barrier_enter(28)
+!$omp barrier
+      call POMP_Barrier_exit(28)
+      call POMP_Workshare_exit(28)
+      call POMP_Parallel_end(28)
+!$omp end parallel
+      call POMP_Parallel_join(28)
+#line 22 "test7.f90"
+
+      end

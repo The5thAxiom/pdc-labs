@@ -1,0 +1,211 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test2.c.opari.inc"
+#line 1 "test2.c"
+#include <stdio.h>
+#ifdef _OPENMP
+#endif
+
+int main() {
+  int i;
+
+POMP_Parallel_fork(&omp_rd_3);
+#line 9 "test2.c"
+ #pragma omp parallel POMP_DLIST_00003
+{ POMP_Parallel_begin(&omp_rd_3);
+#line 10 "test2.c"
+ {
+   printf("parallel\n");
+POMP_For_enter(&omp_rd_4);
+#line 12 "test2.c"
+   #pragma omp for nowait
+   for(i=0; i<4; ++i) {
+     printf("do nowait %d\n", i);
+   }
+POMP_For_exit(&omp_rd_4);
+#line 16 "test2.c"
+
+POMP_Barrier_enter(&omp_rd_5);
+#line 17 "test2.c"
+   #pragma omp barrier
+POMP_Barrier_exit(&omp_rd_5);
+#line 18 "test2.c"
+
+POMP_For_enter(&omp_rd_6);
+#line 19 "test2.c"
+   #pragma omp for nowait
+   for(i=0; i<4; ++i) {
+     printf("do %d\n", i);
+   }
+POMP_Barrier_enter(&omp_rd_6);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_6);
+POMP_For_exit(&omp_rd_6);
+#line 23 "test2.c"
+
+POMP_Sections_enter(&omp_rd_7);
+#line 24 "test2.c"
+   #pragma omp sections nowait
+   {
+#line 26 "test2.c"
+     #pragma omp section
+{ POMP_Section_begin(&omp_rd_7);
+#line 27 "test2.c"
+     printf("section nowait 1\n");
+POMP_Section_end(&omp_rd_7); }
+#line 28 "test2.c"
+     #pragma omp section
+{ POMP_Section_begin(&omp_rd_7);
+#line 29 "test2.c"
+     { printf("section nowait 2\n"); }
+POMP_Section_end(&omp_rd_7); }
+#line 30 "test2.c"
+   }
+POMP_Sections_exit(&omp_rd_7);
+#line 31 "test2.c"
+
+#line 32 "test2.c"
+   #pragma omp master
+{ POMP_Master_begin(&omp_rd_8);
+#line 33 "test2.c"
+   {
+     printf("master\n");
+   }
+POMP_Master_end(&omp_rd_8); }
+#line 36 "test2.c"
+
+POMP_Critical_enter(&omp_rd_9);
+#line 37 "test2.c"
+   #pragma omp critical
+{ POMP_Critical_begin(&omp_rd_9);
+#line 38 "test2.c"
+   {
+     printf("critical\n");
+   }
+POMP_Critical_end(&omp_rd_9); }
+POMP_Critical_exit(&omp_rd_9);
+#line 41 "test2.c"
+
+POMP_Critical_enter(&omp_rd_10);
+#line 42 "test2.c"
+   #pragma omp critical(foobar)
+{ POMP_Critical_begin(&omp_rd_10);
+#line 43 "test2.c"
+   {
+     printf("critical\n");
+   }
+POMP_Critical_end(&omp_rd_10); }
+POMP_Critical_exit(&omp_rd_10);
+#line 46 "test2.c"
+
+POMP_Atomic_enter(&omp_rd_11);
+#line 47 "test2.c"
+   #pragma omp atomic
+   /* -------------- */
+   /* do this atomic */
+   i += 1;
+POMP_Atomic_exit(&omp_rd_11);
+#line 51 "test2.c"
+   /* -------------- */
+
+POMP_Single_enter(&omp_rd_12);
+#line 53 "test2.c"
+   #pragma omp single nowait
+{ POMP_Single_begin(&omp_rd_12);
+#line 54 "test2.c"
+   {
+     printf("single\n");
+   }
+POMP_Single_end(&omp_rd_12); }
+POMP_Barrier_enter(&omp_rd_12);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_12);
+POMP_Single_exit(&omp_rd_12);
+#line 57 "test2.c"
+
+POMP_Sections_enter(&omp_rd_13);
+#line 58 "test2.c"
+   #pragma omp sections nowait
+   {
+#line 60 "test2.c"
+     #pragma omp section
+{ POMP_Section_begin(&omp_rd_13);
+#line 61 "test2.c"
+     { printf("section 1\n"); }
+POMP_Section_end(&omp_rd_13); }
+#line 62 "test2.c"
+     #pragma omp section
+{ POMP_Section_begin(&omp_rd_13);
+#line 63 "test2.c"
+     printf("section 2\n");
+POMP_Section_end(&omp_rd_13); }
+#line 64 "test2.c"
+   }
+POMP_Barrier_enter(&omp_rd_13);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_13);
+POMP_Sections_exit(&omp_rd_13);
+#line 65 "test2.c"
+ }
+POMP_Barrier_enter(&omp_rd_3);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_3);
+POMP_Parallel_end(&omp_rd_3); }
+POMP_Parallel_join(&omp_rd_3);
+#line 66 "test2.c"
+
+ printf("sequential1\n");
+
+POMP_Parallel_fork(&omp_rd_14);
+#line 69 "test2.c"
+ #pragma omp parallel    
+{ POMP_Parallel_begin(&omp_rd_14);
+POMP_For_enter(&omp_rd_14);
+#line 69 "test2.c"
+ #pragma omp          for nowait
+ for(i=0; i<4; ++i) {
+   printf("pdo %d\n", i);
+ }
+POMP_Barrier_enter(&omp_rd_14);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_14);
+POMP_For_exit(&omp_rd_14);
+POMP_Parallel_end(&omp_rd_14); }
+POMP_Parallel_join(&omp_rd_14);
+#line 73 "test2.c"
+
+ printf("sequential2\n");
+
+POMP_Parallel_fork(&omp_rd_15);
+#line 76 "test2.c"
+ #pragma omp parallel         
+{ POMP_Parallel_begin(&omp_rd_15);
+POMP_Sections_enter(&omp_rd_15);
+#line 76 "test2.c"
+ #pragma omp          sections nowait
+ {
+#line 78 "test2.c"
+   #pragma omp section
+{ POMP_Section_begin(&omp_rd_15);
+#line 79 "test2.c"
+   printf("psection 1\n");
+POMP_Section_end(&omp_rd_15); }
+#line 80 "test2.c"
+   #pragma omp section
+{ POMP_Section_begin(&omp_rd_15);
+#line 81 "test2.c"
+   printf("psection 2\n");
+POMP_Section_end(&omp_rd_15); }
+#line 82 "test2.c"
+ }
+POMP_Barrier_enter(&omp_rd_15);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_15);
+POMP_Sections_exit(&omp_rd_15);
+POMP_Parallel_end(&omp_rd_15); }
+POMP_Parallel_join(&omp_rd_15);
+#line 83 "test2.c"
+}

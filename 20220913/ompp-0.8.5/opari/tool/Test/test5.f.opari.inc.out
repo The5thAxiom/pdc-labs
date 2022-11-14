@@ -1,0 +1,8 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_52 = {
+  "parallelsections", "", 2, "test5.f", 4, 7, 12, 12
+};
+
+#define POMP_DLIST_00052 shared(omp_rd_52)
+

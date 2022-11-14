@@ -1,0 +1,24 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_41 = {
+  "region", "foo", 0, "testF.f90", 5, 5, 29, 29
+};
+
+struct ompregdescr omp_rd_42 = {
+  "parallel", "", 0, "testF.f90", 12, 12, 22, 22
+};
+
+#define POMP_DLIST_00042 shared(omp_rd_42,omp_rd_43,omp_rd_44,omp_rd_45)
+
+struct ompregdescr omp_rd_43 = {
+  "region", "phase1", 0, "testF.f90", 14, 14, 20, 20
+};
+
+struct ompregdescr omp_rd_44 = {
+  "region", "phase2", 0, "testF.f90", 15, 15, 19, 19
+};
+
+struct ompregdescr omp_rd_45 = {
+  "barrier", "", 0, "testF.f90", 17, 17, 0, 0
+};
+

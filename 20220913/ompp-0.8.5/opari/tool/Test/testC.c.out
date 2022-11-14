@@ -1,0 +1,22 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "testC.c.opari.inc"
+#line 1 "testC.c"
+int main() {
+
+POMP_Flush_enter(&omp_rd_38);
+#line 3 "testC.c"
+  #pragma omp flush
+POMP_Flush_exit(&omp_rd_38);
+#line 4 "testC.c"
+
+POMP_Flush_enter(&omp_rd_39);
+#line 5 "testC.c"
+  #pragma omp flush (i, j, k)
+POMP_Flush_exit(&omp_rd_39);
+#line 6 "testC.c"
+
+}

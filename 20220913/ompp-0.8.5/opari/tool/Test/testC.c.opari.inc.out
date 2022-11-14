@@ -1,0 +1,10 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_38 = {
+  "flush", "", 0, "testC.c", 3, 3, 0, 0
+};
+
+struct ompregdescr omp_rd_39 = {
+  "flush", "", 0, "testC.c", 5, 5, 0, 0
+};
+

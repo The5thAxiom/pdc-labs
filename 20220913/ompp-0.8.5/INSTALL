@@ -1,0 +1,101 @@
+-------------------------------------------------------------------
+                   ompP: OpenMP Profiling Tool
+             (Part of MADAME: Multicore Application 
+              Development and  Modeling Environment)
+            ompP version v.0.8.5 INSTALLATION GUIDE
+-------------------------------------------------------------------
+
+NOTE: The Opari instrumenter and the kinst-* scripts were copied and
+ adaped from the Kojak toolset for automatic performance analysis with
+ permission. See http://www.fz-juelich.de/zam/kojak/ for a full
+ description of Opari and the Kojak toolset. Those components are
+ Copyright, Forschungszentrum Juelich GmbH, Federal Republic of
+ Germany and University of Tennessee, Knoxville, USA.
+
+NOTE: ompP makes use of the GNU libmatheval package, see
+ http://www.gnu.org/software/libmatheval/ for further information.
+
+NOTE: ompP is Copyright (C) 2005-2012 Karl Fuerlinger, 
+ TU Muenchen (Germany), the University of Tennessee (USA), 
+ the University of California at Berkeley (USA), the Lawrence
+ Berkeley National Laboratory (USA), and LMU Muenchen (Germany).
+
+NOTE: ompP is distributed under the GNU General Public License (GPL).
+ Please see the file LICENSE for details.
+-------------------------------------------------------------------
+
+INSTALLATION INSTRUCTIONS:
+
+1. Unpack the archive into a temporary directory. E.g.,
+
+  $:~/tmp> tar -xvzf ompp-0.8.5.tgz 
+
+  Modify the file 'Makefile.defs' according to your needs. You have to
+  specify the installation source directory ($INSDIR), the name of the 
+  OpenMP C/C++ compiler ($OMPCC) and to specify the compiler flag to
+  enable the compiler's OpenMP mode ($OMPFLAG).
+
+  Additionally you can select a C++ compiler for compiling the Opari 
+  instrumenter (CXX). If nothing is specified, g++ is used per default.
+
+  Here is a table of frequently encoutered platform/compiler settings:
+
+  Platform               | $OMPCC   | $OMPFLAG
+  -----------------------------------------------
+  Linux/x86_64 Intel     | icc      | -openmp
+  Linux/x86_64 Pathscale | pathcc   | -mp 
+  Linux/x86_64 PGI       | pgcc     | -mp 
+  
+  Furthermore you can specify the path to the PAPI hardware counter
+  library if it is available on your system and you want to build 
+  ompP with PAPI support. Specify the path to the PAPI library such as 
+  PAPI_LIBRARY=/usr/lib/libpapi.a as well as the path to the PAPI
+  header file ('papi.h') in PAPI_INCLUDE (e.g., PAPI_INCLUDE=/usr/include). 
+
+
+2. Execute 'make' or 'gmake' to build the ompP monitoring library
+  (libompp.a), Opari, and the instrumenation scripts (kinst-ompp and
+  kinst-ompp-papi). ompP uses GNU make for its build system.
+
+
+3. Execute 'make install' to copy the generated files to the installation
+  directory. ompP will install files into $INSTDIR/bin/ (the Opari
+  instrumenter and the instrumentation scripts kinst-ompp*), $INSTDIR/include 
+  (the header files required by Opari), and $INSTDIR/lib -- the ompP library 
+  'libompp.a' (without PAPI support) and 'libompp-papi.a' (with PAPI
+  support). Documentation will be installed in $INSTDIR/doc
+
+
+4. Add $INSTDIR/bin/ to your PATH environment variable
+
+
+5. Prepend ally compile or link commands on the command line or 
+  in Makefiles by 'kinst-ompp' or 'kinst-ompp-papi'. E.g.,
+
+  'icc -openmp -o test test.c'
+
+  becomes  
+
+  'kinst-ompp icc -openmp -o test test.c'
+
+  If you use 'kinst-ompp-papi' instead of 'kinst-ompp' a version of ompP 
+  will be used that contains PAPI and hardware counters can be used in ompP. 
+
+
+6. Run the compiled program. E.g., running ./test will generate a file 
+ 
+  test.$n-$m.ompp.txt 
+  
+  where $n is the number of OpenMP threads and $m is a sequence 
+  number starting from 0.
+
+
+7. See the documentation in $INSTDIR/doc for further information on
+  how to used ompP and how to interpret the profiling report.
+
+
+8. For bug reports, help, etc. please consult the web page 
+   at http://www.ompp-tool.com
+
+
+

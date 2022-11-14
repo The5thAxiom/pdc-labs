@@ -1,0 +1,66 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test4.c.opari.inc"
+#line 1 "test4.c"
+#include <stdio.h>
+
+int main() {
+  int i;
+
+POMP_Parallel_fork(&omp_rd_16);
+#line 6 "test4.c"
+  #pragma omp parallel POMP_DLIST_00016
+{ POMP_Parallel_begin(&omp_rd_16);
+#line 7 "test4.c"
+  {
+    printf("parallel\n");
+POMP_For_enter(&omp_rd_17);
+#line 9 "test4.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i) printf("do ; ; ; nowait %d\n", i);
+POMP_For_exit(&omp_rd_17);
+#line 11 "test4.c"
+
+POMP_Barrier_enter(&omp_rd_18);
+#line 12 "test4.c"
+    #pragma omp barrier
+POMP_Barrier_exit(&omp_rd_18);
+#line 13 "test4.c"
+
+POMP_For_enter(&omp_rd_19);
+#line 14 "test4.c"
+    #pragma omp \
+	                \
+	                     \
+	   for                   nowait
+    for (i=0; i<4; ++i) {
+      printf("do nowait? %d\n", i);
+    }
+POMP_Barrier_enter(&omp_rd_19);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_19);
+POMP_For_exit(&omp_rd_19);
+#line 21 "test4.c"
+
+POMP_For_enter(&omp_rd_20);
+#line 22 "test4.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i) {
+      printf("do %d\n", i);
+    }
+POMP_Barrier_enter(&omp_rd_20);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_20);
+POMP_For_exit(&omp_rd_20);
+#line 26 "test4.c"
+  }
+POMP_Barrier_enter(&omp_rd_16);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_16);
+POMP_Parallel_end(&omp_rd_16); }
+POMP_Parallel_join(&omp_rd_16);
+#line 27 "test4.c"
+}

@@ -1,0 +1,42 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test5.f"
+      program test
+      integer i,j,k,l
+
+      call POMP_Parallel_fork(52)
+#line 4 "test5.f"
+!$omp  parallel
+!$omp+ default(shared) private(i)               
+      call POMP_Parallel_begin(52)
+      call POMP_Sections_enter(52)
+#line 4 "test5.f"
+!$omp  sections
+!$omp+                            lastprivate(k)
+!$omp+ lastprivate(l)
+#line 8 "test5.f"
+!$omp  section
+      call POMP_Section_begin(52)
+#line 9 "test5.f"
+         write(*,*) "section1"
+      call POMP_Section_end(52)
+#line 10 "test5.f"
+!$omp  section
+      call POMP_Section_begin(52)
+#line 11 "test5.f"
+         write(*,*) "section2"
+      call POMP_Section_end(52)
+!$omp end sections nowait
+      call POMP_Barrier_enter(52)
+!$omp barrier
+      call POMP_Barrier_exit(52)
+      call POMP_Sections_exit(52)
+      call POMP_Parallel_end(52)
+!$omp end parallel
+      call POMP_Parallel_join(52)
+#line 13 "test5.f"
+
+      end

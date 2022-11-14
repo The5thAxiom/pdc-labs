@@ -1,0 +1,7 @@
+
+#ifndef JOBENV_H_INCLUDED
+#define JOBENV_H_INCLUDED
+
+#define MAXSIZE_CMDLINE 128
+
+#endif /* JOBENV_H_INCLUDED */

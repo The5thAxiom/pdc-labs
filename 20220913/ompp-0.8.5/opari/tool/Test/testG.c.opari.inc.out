@@ -1,0 +1,20 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_50 = {
+  "parallel", "", 0, "testG.c", 7, 7, 30, 30
+};
+
+#define POMP_DLIST_00050 shared(omp_rd_50,omp_rd_51,omp_rd_52,omp_rd_53)
+
+struct ompregdescr omp_rd_51 = {
+  "single", "", 0, "testG.c", 12, 12, 16, 16
+};
+
+struct ompregdescr omp_rd_52 = {
+  "single", "", 0, "testG.c", 20, 20, 23, 23
+};
+
+struct ompregdescr omp_rd_53 = {
+  "single", "", 0, "testG.c", 25, 25, 28, 28
+};
+

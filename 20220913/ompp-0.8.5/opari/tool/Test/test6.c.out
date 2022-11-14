@@ -1,0 +1,20 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test6.c.opari.inc"
+#line 1 "test6.c"
+
+int main() {
+  // omp_init_lock(i)
+  /* -- omp_init_lock(i) -- */
+  "omp_init_lock(i)"  // omp_init_lock(i)
+  "omp_init_lock(i)\"test" "\"omp_init_lock(i)" "omp_init_lock(i)\""
+  """" "\"""\""
+
+  POMP_Init_lock(i);       // omp_init_lock(i)
+  POMP_Init_lock(i); POMP_Set_lock(i); POMP_Destroy_lock(i);
+  printf("omp_init_lock(i)"); POMP_Init_lock(i);
+  omp_init_locks(i);
+}

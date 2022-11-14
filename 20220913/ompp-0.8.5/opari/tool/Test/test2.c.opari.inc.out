@@ -1,0 +1,60 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_3 = {
+  "parallel", "", 0, "test2.c", 9, 9, 65, 65
+};
+
+#define POMP_DLIST_00003 shared(omp_rd_3,omp_rd_4,omp_rd_5,omp_rd_6,omp_rd_7,omp_rd_8,omp_rd_9,omp_rd_10,omp_rd_11,omp_rd_12,omp_rd_13)
+
+struct ompregdescr omp_rd_4 = {
+  "for", "", 0, "test2.c", 12, 12, 15, 15
+};
+
+struct ompregdescr omp_rd_5 = {
+  "barrier", "", 0, "test2.c", 17, 17, 0, 0
+};
+
+struct ompregdescr omp_rd_6 = {
+  "for", "", 0, "test2.c", 19, 19, 22, 22
+};
+
+struct ompregdescr omp_rd_7 = {
+  "sections", "", 2, "test2.c", 24, 24, 30, 30
+};
+
+struct ompregdescr omp_rd_8 = {
+  "master", "", 0, "test2.c", 32, 32, 35, 35
+};
+
+struct ompregdescr omp_rd_9 = {
+  "critical", "", 0, "test2.c", 37, 37, 40, 40
+};
+
+struct ompregdescr omp_rd_10 = {
+  "critical", "foobar", 0, "test2.c", 42, 42, 45, 45
+};
+
+struct ompregdescr omp_rd_11 = {
+  "atomic", "", 0, "test2.c", 47, 47, 50, 50
+};
+
+struct ompregdescr omp_rd_12 = {
+  "single", "", 0, "test2.c", 53, 53, 56, 56
+};
+
+struct ompregdescr omp_rd_13 = {
+  "sections", "", 2, "test2.c", 58, 58, 64, 64
+};
+
+struct ompregdescr omp_rd_14 = {
+  "parallelfor", "", 0, "test2.c", 69, 69, 72, 72
+};
+
+#define POMP_DLIST_00014 shared(omp_rd_14)
+
+struct ompregdescr omp_rd_15 = {
+  "parallelsections", "", 2, "test2.c", 76, 76, 82, 82
+};
+
+#define POMP_DLIST_00015 shared(omp_rd_15)
+

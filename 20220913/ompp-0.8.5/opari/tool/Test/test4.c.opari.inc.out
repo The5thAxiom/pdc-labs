@@ -1,0 +1,24 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_16 = {
+  "parallel", "", 0, "test4.c", 6, 6, 26, 26
+};
+
+#define POMP_DLIST_00016 shared(omp_rd_16,omp_rd_17,omp_rd_18,omp_rd_19,omp_rd_20)
+
+struct ompregdescr omp_rd_17 = {
+  "for", "", 0, "test4.c", 9, 9, 10, 10
+};
+
+struct ompregdescr omp_rd_18 = {
+  "barrier", "", 0, "test4.c", 12, 12, 0, 0
+};
+
+struct ompregdescr omp_rd_19 = {
+  "for", "", 0, "test4.c", 14, 17, 20, 20
+};
+
+struct ompregdescr omp_rd_20 = {
+  "for", "", 0, "test4.c", 22, 22, 25, 25
+};
+

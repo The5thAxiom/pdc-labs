@@ -1,0 +1,53 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "testD.c.opari.inc"
+#line 1 "testD.c"
+void foo (bool b) {
+  int i;
+
+POMP_Begin(&omp_rd_40);
+#line 5 "testD.c"
+  i = 4;
+  if (b) {
+POMP_End(&omp_rd_40);
+#line 8 "testD.c"
+    return;
+  }
+
+POMP_Parallel_fork(&omp_rd_41);
+#line 11 "testD.c"
+  #pragma omp parallel POMP_DLIST_00041
+{ POMP_Parallel_begin(&omp_rd_41);
+#line 12 "testD.c"
+  {
+POMP_Begin(&omp_rd_42);
+#line 14 "testD.c"
+
+POMP_Barrier_enter(&omp_rd_43);
+#line 15 "testD.c"
+    #pragma omp barrier
+POMP_Barrier_exit(&omp_rd_43);
+#line 16 "testD.c"
+
+POMP_End(&omp_rd_42);
+#line 18 "testD.c"
+  }
+POMP_Barrier_enter(&omp_rd_41);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_41);
+POMP_Parallel_end(&omp_rd_41); }
+POMP_Parallel_join(&omp_rd_41);
+#line 19 "testD.c"
+
+  if (b) {
+POMP_End(&omp_rd_40);
+#line 22 "testD.c"
+    return;
+  }
+
+POMP_End(&omp_rd_40);
+#line 26 "testD.c"
+}

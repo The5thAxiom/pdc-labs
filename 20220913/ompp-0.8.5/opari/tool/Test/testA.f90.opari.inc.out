@@ -1,0 +1,10 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_33 = {
+  "barrier", "", 0, "testA.f90", 3, 3, 0, 0
+};
+
+struct ompregdescr omp_rd_34 = {
+  "barrier", "", 0, "testA.f90", 18, 18, 0, 0
+};
+

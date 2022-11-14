@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/mnt/sam/VIT/year3/sem5_fall-22-23/CSE4001_Parallel-and_Distributed-Computing_ETLP/Lab/20220802'
+gcc case1.c -fopenmp -o case1.out && \
+./case1.out
+make: Leaving directory '/mnt/sam/VIT/year3/sem5_fall-22-23/CSE4001_Parallel-and_Distributed-Computing_ETLP/Lab/20220802'
+ 

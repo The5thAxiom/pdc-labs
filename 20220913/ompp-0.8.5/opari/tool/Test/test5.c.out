@@ -1,0 +1,37 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test5.c.opari.inc"
+#line 1 "test5.c"
+#include <stdio.h>
+
+int main() {
+  int i, j, k, l;
+POMP_Parallel_fork(&omp_rd_21);
+#line 5 "test5.c"
+  #pragma omp parallel                        \
+      private(i,j)                             
+{ POMP_Parallel_begin(&omp_rd_21);
+POMP_For_enter(&omp_rd_21);
+#line 5 "test5.c"
+  #pragma omp                                 \
+      for                               \
+      lastprivate(k)                    \
+      lastprivate                       \
+      (                                 \
+        l                               \
+      ) schedule(dynamic                \
+      ) nowait
+  for(i=0; i<4;++i) {
+    printf("pdo %d\n", i);
+  }
+POMP_Barrier_enter(&omp_rd_21);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_21);
+POMP_For_exit(&omp_rd_21);
+POMP_Parallel_end(&omp_rd_21); }
+POMP_Parallel_join(&omp_rd_21);
+#line 17 "test5.c"
+}

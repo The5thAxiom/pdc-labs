@@ -1,0 +1,24 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_18 = {
+  "parallel", "", 0, "test4.f90", 4, 4, 27, 27
+};
+
+#define POMP_DLIST_00018 shared(omp_rd_18,omp_rd_19,omp_rd_20,omp_rd_21,omp_rd_22)
+
+struct ompregdescr omp_rd_19 = {
+  "do", "", 0, "test4.f90", 6, 6, 10, 10
+};
+
+struct ompregdescr omp_rd_20 = {
+  "barrier", "", 0, "test4.f90", 12, 12, 0, 0
+};
+
+struct ompregdescr omp_rd_21 = {
+  "do", "", 0, "test4.f90", 14, 14, 18, 20
+};
+
+struct ompregdescr omp_rd_22 = {
+  "do", "", 0, "test4.f90", 22, 22, 26, 26
+};
+

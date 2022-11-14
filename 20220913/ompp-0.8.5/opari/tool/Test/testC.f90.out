@@ -1,0 +1,21 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "testC.f90"
+      program testC
+
+      call POMP_Flush_enter(35)
+#line 3 "testC.f90"
+      !$omp flush
+      call POMP_Flush_exit(35)
+#line 4 "testC.f90"
+
+      call POMP_Flush_enter(36)
+#line 5 "testC.f90"
+      !$omp flush (i, j, k)
+      call POMP_Flush_exit(36)
+#line 6 "testC.f90"
+
+      end

@@ -1,0 +1,59 @@
+#
+# ompp 0.8.5 makefile definitions
+#
+
+# root direcotry for the installation
+# e.g., INSTDIR=$(HOME)/ompp or INSTDIR=/usr
+INSTDIR=
+
+# binaries will be installed here
+BINDIR=$(INSTDIR)/bin
+
+# header files will be installed here
+INCDIR=$(INSTDIR)/include
+
+# monitoring library  will be installed here
+LIBDIR=$(INSTDIR)/lib
+
+# directory for the documentation
+DOCDIR=$(INSTDIR)/doc
+
+# directory for test cases
+TESTDIR=$(INSTDIR)/test
+
+# OpenMP C/C++ compiler
+# e.g., OMPCC=icc, OMPCC=pathcc, etc. 
+OMPCC=gcc
+
+# OpenMP C/C++ comipler flag, 
+# e.g., OMPFLAG=-openmp, OMPFLAG=-mp
+OMPFLAG=-fopenmp
+
+
+# *** OPTIONAL and EXPERIMENTAL ***
+# *** leave empty to disable MPI profiling ***
+# Hybrid MPI+OpenMP compiler and flag
+# e.g., HYBCC=mpicc, HYBFLAG=-openmp
+HYBCC=
+HYBFLAG=
+
+# c++ compiler for Opari, leave this to be g++
+# unless there are specific reasons against
+CXX=g++
+
+
+#
+# location of the PAPI hw-counter library (optional)
+# e.g., 
+#
+# PAPI_LIBRARY=$(HOME)/papi-3.6.0/lib/libpapi.a
+# PAPI_INCLUDE=$(HOME)/papi-3.6.0/include
+#
+# If PAPI_LIBRARY is not set, ompP will be built without 
+# HW-Counter suppport
+#
+
+PAPI_LIBRARY=
+PAPI_INCLUDE=
+
+

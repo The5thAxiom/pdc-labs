@@ -1,0 +1,20 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_40 = {
+  "region", "foo", 0, "testD.c", 4, 4, 25, 25
+};
+
+struct ompregdescr omp_rd_41 = {
+  "parallel", "", 0, "testD.c", 11, 11, 18, 18
+};
+
+#define POMP_DLIST_00041 shared(omp_rd_41,omp_rd_42,omp_rd_43)
+
+struct ompregdescr omp_rd_42 = {
+  "region", "phase1", 0, "testD.c", 13, 13, 17, 17
+};
+
+struct ompregdescr omp_rd_43 = {
+  "barrier", "", 0, "testD.c", 15, 15, 0, 0
+};
+

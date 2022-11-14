@@ -1,0 +1,46 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test3.f90"
+      program test3
+
+      call POMP_Parallel_fork(16)
+#line 3 "test3.f90"
+      !$omp     parallel       !test !test !test
+      call POMP_Parallel_begin(16)
+      call POMP_Sections_enter(16)
+#line 3 "test3.f90"
+            !$omp           sections
+            write(*,*) "psection"
+      call POMP_Section_end(16)
+!$omp end sections nowait
+      call POMP_Barrier_enter(16)
+!$omp barrier
+      call POMP_Barrier_exit(16)
+      call POMP_Sections_exit(16)
+      call POMP_Parallel_end(16)
+!$omp end parallel
+      call POMP_Parallel_join(16)
+#line 9 "test3.f90"
+
+      call POMP_Parallel_fork(17)
+#line 10 "test3.f90"
+      !$omp parallel         
+      call POMP_Parallel_begin(17)
+      call POMP_Sections_enter(17)
+#line 10 "test3.f90"
+      !$omp          sections
+            write(*,*) "psection"
+      call POMP_Section_end(17)
+!$omp end sections nowait
+      call POMP_Barrier_enter(17)
+!$omp barrier
+      call POMP_Barrier_exit(17)
+      call POMP_Sections_exit(17)
+      call POMP_Parallel_end(17)
+!$omp end parallel
+      call POMP_Parallel_join(17)
+#line 15 "test3.f90"
+      end

@@ -1,0 +1,35 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test6.f90"
+      program test6
+
+      ! call omp_init_lock(i)
+C f77 call omp_init_lock(i)
+      "omp_init_lock(i)"  'omp_init_lock(i)'    ! call omp_init_lock(i)
+      "omp_init_lock(i)""test" """omp_init_lock(i)" "omp_init_lock(i)"""
+      """" """"""""
+
+      "omp_init_lock(i)
+C        "
+     +omp_init_lock(i)"
+
+      "omp_init_lock(i)    &
+     !   "
+      &omp_init_lock(i)"  call POMP_Init_lock(i)
+
+      call POMP_Init_lock(i)       ! call omp_init_lock(i)
+      call POMP_Init_lock(i) ; call POMP_Set_lock(i) ; call POMP_Destroy_lock(i)
+      write(*,*) "call omp_init_lock(i)" ; call POMP_Init_lock(i)
+
+C$C99 call omp_init_lock(i)
+    !$DOMP  call omp_init_lock(i)
+
+*$    call POMP_Init_lock(i)
+      call POMP_Init_lock(i)
+    !$  call POMP_Init_lock(i)
+        call POMP_Init_lock(i)
+
+      end

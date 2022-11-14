@@ -1,0 +1,28 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_24 = {
+  "parallel", "", 0, "test7.f90", 4, 4, 9, 9
+};
+
+#define POMP_DLIST_00024 shared(omp_rd_24,omp_rd_25)
+
+struct ompregdescr omp_rd_25 = {
+  "workshare", "", 0, "test7.f90", 5, 5, 8, 8
+};
+
+struct ompregdescr omp_rd_26 = {
+  "parallel", "", 0, "test7.f90", 11, 11, 16, 16
+};
+
+#define POMP_DLIST_00026 shared(omp_rd_26,omp_rd_27)
+
+struct ompregdescr omp_rd_27 = {
+  "workshare", "", 0, "test7.f90", 12, 12, 15, 15
+};
+
+struct ompregdescr omp_rd_28 = {
+  "parallelworkshare", "", 0, "test7.f90", 18, 18, 21, 21
+};
+
+#define POMP_DLIST_00028 shared(omp_rd_28)
+

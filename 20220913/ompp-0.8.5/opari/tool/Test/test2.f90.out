@@ -1,0 +1,208 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test2.f90"
+       program test2
+       integer i
+
+      call POMP_Parallel_fork(3)
+#line 4 "test2.f90"
+       !$omp parallel
+      call POMP_Parallel_begin(3)
+#line 5 "test2.f90"
+       write(*,*) "parallel"
+      call POMP_Do_enter(4)
+#line 6 "test2.f90"
+         !$omp do
+         do i=1,4
+           write(*,*) "do nowait",i
+         enddo
+#line 10 "test2.f90"
+         !$omp enddo nowait
+      call POMP_Do_exit(4)
+#line 11 "test2.f90"
+
+      call POMP_Barrier_enter(5)
+#line 12 "test2.f90"
+         !$omp barrier
+      call POMP_Barrier_exit(5)
+#line 13 "test2.f90"
+
+      call POMP_Do_enter(6)
+#line 14 "test2.f90"
+         !$omp do
+         do i=1,4
+           write(*,*) "do",i
+         enddo
+#line 18 "test2.f90"
+         !$omp end do nowait
+      call POMP_Barrier_enter(6)
+!$omp barrier
+      call POMP_Barrier_exit(6)
+      call POMP_Do_exit(6)
+#line 19 "test2.f90"
+
+      call POMP_Sections_enter(7)
+#line 20 "test2.f90"
+         !$omp sections
+#line 21 "test2.f90"
+           !$omp section
+      call POMP_Section_begin(7)
+#line 22 "test2.f90"
+           write(*,*) "section nowait 1"
+      call POMP_Section_end(7)
+#line 23 "test2.f90"
+           !$omp section
+      call POMP_Section_begin(7)
+#line 24 "test2.f90"
+           write(*,*) "section nowait 2"
+      call POMP_Section_end(7)
+#line 25 "test2.f90"
+         !$omp end sections nowait
+      call POMP_Sections_exit(7)
+#line 26 "test2.f90"
+
+#line 27 "test2.f90"
+         !$omp master
+      call POMP_Master_begin(8)
+#line 28 "test2.f90"
+         write(*,*) "master"
+      call POMP_Master_end(8)
+#line 29 "test2.f90"
+         !$omp end master
+
+      call POMP_Critical_enter(9)
+#line 31 "test2.f90"
+         !$omp critical
+      call POMP_Critical_begin(9)
+#line 32 "test2.f90"
+         write(*,*) "critical"
+      call POMP_Critical_end(9)
+#line 33 "test2.f90"
+         !$omp end critical
+      call POMP_Critical_exit(9)
+#line 34 "test2.f90"
+
+      call POMP_Critical_enter(10)
+#line 35 "test2.f90"
+         !$omp critical(foobar)
+      call POMP_Critical_begin(10)
+#line 36 "test2.f90"
+         write(*,*) "critical"
+      call POMP_Critical_end(10)
+#line 37 "test2.f90"
+         !$omp end critical(foobar)
+      call POMP_Critical_exit(10)
+#line 38 "test2.f90"
+
+      call POMP_Atomic_enter(11)
+#line 39 "test2.f90"
+         !$omp atomic
+         ! do this atomic
+         i = i + 1
+      call POMP_Atomic_exit(11)
+#line 42 "test2.f90"
+
+      call POMP_Single_enter(12)
+#line 43 "test2.f90"
+         !$omp single
+      call POMP_Single_begin(12)
+#line 44 "test2.f90"
+         write(*,*) "single"
+      call POMP_Single_end(12)
+#line 45 "test2.f90"
+         !$omp end single nowait
+      call POMP_Barrier_enter(12)
+!$omp barrier
+      call POMP_Barrier_exit(12)
+      call POMP_Single_exit(12)
+#line 46 "test2.f90"
+
+      call POMP_Sections_enter(13)
+#line 47 "test2.f90"
+         !$omp sections
+#line 48 "test2.f90"
+           !$omp section
+      call POMP_Section_begin(13)
+#line 49 "test2.f90"
+           write(*,*) "section 1"
+      call POMP_Section_end(13)
+#line 50 "test2.f90"
+           !$omp section
+      call POMP_Section_begin(13)
+#line 51 "test2.f90"
+           write(*,*) "section 2"
+      call POMP_Section_end(13)
+#line 52 "test2.f90"
+         !$omp endsections nowait
+      call POMP_Barrier_enter(13)
+!$omp barrier
+      call POMP_Barrier_exit(13)
+      call POMP_Sections_exit(13)
+#line 53 "test2.f90"
+
+      call POMP_Barrier_enter(3)
+!$omp barrier
+      call POMP_Barrier_exit(3)
+      call POMP_Parallel_end(3)
+#line 54 "test2.f90"
+       !$omp end parallel
+      call POMP_Parallel_join(3)
+#line 55 "test2.f90"
+
+       write(*,*) "sequential1"
+
+      call POMP_Parallel_fork(14)
+#line 58 "test2.f90"
+       !$omp parallel   
+      call POMP_Parallel_begin(14)
+      call POMP_Do_enter(14)
+#line 58 "test2.f90"
+       !$omp          do
+       do i=1,4
+         write(*,*) "pdo",i
+       enddo
+!$omp end do nowait
+      call POMP_Barrier_enter(14)
+!$omp barrier
+      call POMP_Barrier_exit(14)
+      call POMP_Do_exit(14)
+      call POMP_Parallel_end(14)
+!$omp end parallel
+      call POMP_Parallel_join(14)
+#line 63 "test2.f90"
+
+       write(*,*) "sequential2"
+
+      call POMP_Parallel_fork(15)
+#line 66 "test2.f90"
+       !$omp parallel        
+      call POMP_Parallel_begin(15)
+      call POMP_Sections_enter(15)
+#line 66 "test2.f90"
+       !$omp         sections
+#line 67 "test2.f90"
+         !$omp section
+      call POMP_Section_begin(15)
+#line 68 "test2.f90"
+         write(*,*) "psection 1"
+      call POMP_Section_end(15)
+#line 69 "test2.f90"
+         !$omp section
+      call POMP_Section_begin(15)
+#line 70 "test2.f90"
+         write(*,*) "psection 2"
+      call POMP_Section_end(15)
+!$omp end sections nowait
+      call POMP_Barrier_enter(15)
+!$omp barrier
+      call POMP_Barrier_exit(15)
+      call POMP_Sections_exit(15)
+      call POMP_Parallel_end(15)
+!$omp end parallel
+      call POMP_Parallel_join(15)
+#line 72 "test2.f90"
+
+       end

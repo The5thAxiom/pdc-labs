@@ -1,0 +1,34 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "testA.f90"
+      program testA
+
+      call POMP_Barrier_enter(33)
+#line 3 "testA.f90"
+      !$omp barrier
+      call POMP_Barrier_exit(33)
+#line 4 "testA.f90"
+
+#line 6 "testA.f90"
+
+      !$pomp inst &
+      !$pomp begin(foo)
+
+      !$omp parallel
+      i = 9
+      !$omp end parallel
+
+      !$pomp inst end(foo)
+
+#line 17 "testA.f90"
+
+      call POMP_Barrier_enter(34)
+#line 18 "testA.f90"
+      !$omp barrier
+      call POMP_Barrier_exit(34)
+#line 19 "testA.f90"
+
+      end

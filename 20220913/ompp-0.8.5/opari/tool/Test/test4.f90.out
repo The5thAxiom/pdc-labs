@@ -1,0 +1,71 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test4.f90"
+       program test4
+       integer i
+
+      call POMP_Parallel_fork(18)
+#line 4 "test4.f90"
+       !$omp parallel
+      call POMP_Parallel_begin(18)
+#line 5 "test4.f90"
+       write(*,*) "parallel"
+      call POMP_Do_enter(19)
+#line 6 "test4.f90"
+         !$omp do
+         do i=1,4
+           write(*,*) "do nowait",i
+         enddo
+#line 10 "test4.f90"
+         !$omp enddo nowait
+      call POMP_Do_exit(19)
+#line 11 "test4.f90"
+
+      call POMP_Barrier_enter(20)
+#line 12 "test4.f90"
+         !$omp barrier
+      call POMP_Barrier_exit(20)
+#line 13 "test4.f90"
+
+      call POMP_Do_enter(21)
+#line 14 "test4.f90"
+         !$omp do
+         do i=1,4
+           write(*,*) "do nowait?",i
+         enddo
+#line 18 "test4.f90"
+         !$omp   end   &  ! continue
+         !$omp &       &  ! still continue
+         !$omp & do        nowait! kein nowait
+      call POMP_Barrier_enter(21)
+!$omp barrier
+      call POMP_Barrier_exit(21)
+      call POMP_Do_exit(21)
+#line 21 "test4.f90"
+
+      call POMP_Do_enter(22)
+#line 22 "test4.f90"
+         !$omp do
+         do i=1,4
+           write(*,*) "do",i
+         enddo
+#line 26 "test4.f90"
+         !$omp end do nowait
+      call POMP_Barrier_enter(22)
+!$omp barrier
+      call POMP_Barrier_exit(22)
+      call POMP_Do_exit(22)
+#line 27 "test4.f90"
+      call POMP_Barrier_enter(18)
+!$omp barrier
+      call POMP_Barrier_exit(18)
+      call POMP_Parallel_end(18)
+#line 27 "test4.f90"
+       !$omp end parallel
+      call POMP_Parallel_join(18)
+#line 28 "test4.f90"
+
+       end

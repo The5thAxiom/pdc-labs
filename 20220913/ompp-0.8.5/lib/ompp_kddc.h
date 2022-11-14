@@ -1,0 +1,7 @@
+#ifndef OMPP_KDDC_H_INCLUDED
+#define OMPP_KDDC_H_INCLUDED
+
+
+#endif /* OMPP_KDDC_H_INCLUDED */
+
+

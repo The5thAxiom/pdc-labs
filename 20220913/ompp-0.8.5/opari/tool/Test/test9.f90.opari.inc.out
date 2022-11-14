@@ -1,0 +1,12 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_31 = {
+  "region", "foo", 0, "test9.f90", 8, 9, 15, 15
+};
+
+struct ompregdescr omp_rd_32 = {
+  "parallel", "", 0, "test9.f90", 11, 11, 13, 13
+};
+
+#define POMP_DLIST_00032 shared(omp_rd_32)
+

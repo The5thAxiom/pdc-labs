@@ -1,0 +1,28 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test3.f"
+      program test3
+
+      call POMP_Parallel_fork(51)
+#line 3 "test3.f"
+c$omp    parallel
+      call POMP_Parallel_begin(51)
+      call POMP_Do_enter(51)
+#line 3 "test3.f"
+c$omp    do
+      do i=1,4
+        write(*,*) "pdo", i
+      enddo
+!$omp end do nowait
+      call POMP_Barrier_enter(51)
+!$omp barrier
+      call POMP_Barrier_exit(51)
+      call POMP_Do_exit(51)
+      call POMP_Parallel_end(51)
+!$omp end parallel
+      call POMP_Parallel_join(51)
+#line 13 "test3.f"
+      end

@@ -1,0 +1,44 @@
+
+ompP is a profiling tool for OpenMP applications. OpenMP applications
+written in C/C++ or FORTRAN are supported.
+
+See the file 'INSTALL' for installation instructions and usage guide
+'ompp-usage.pdf' or 'ompp-usage.txt' in the doc/ directory for
+information on how to use ompP.
+
+ompP is Copyright (C) 2005-2012 Karl Fuerlinger, TU Muenchen (Germany),
+the University of Tennessee (USA), the University of California at 
+Berkeley (USA), and the Lawrence Berkeley National Laboratory (USA), and
+LMU Muenchen (Germany).
+
+Support for ompP comes from the European Union via an International
+Reintegration Grant (IRG) under Grant Agreement Number 268351 for the
+Project MADAME (Multicore Application Development and Modeling
+Environment).
+
+This software uses components contributed and copyright by:
+ - Aleksandar B. Samardzic (libmatheval) -- see lib/matheval
+ - Bernd Mohr, Felix Wolf, Markus Geimer, and others at FZ Juelich
+   and the University of Tennessee -- see lib/cubew/
+
+ompP is distributed under the GNU General Public License (GPL). Please
+see the file 'LICENSE' for details.
+
+If you would like a citation for ompP in your publication, please use:
+
+@inproceedings{Fuerlinger:2005:ompP,
+  author     = "Karl F{\"u}rlinger and Michael Gerndt",
+  title      = "{ompP}: A Profiling Tool for {OpenMP}",
+  booktitle  = "Proceedings of the First International 
+                Workshop on OpenMP (IWOMP 2005)",
+  year       = "2005",
+  pages      = "15-23,
+  month      = may,
+  address    = "Eugene, Oregon, USA",
+}
+
+ompP v.0.8.5 -- info@ompp-tool.com -- http://www.ompp-tool.com
+
+--
+Karl Fuerlinger, Berkeley California, USA, February 2009.
+Karl.Fuerlinger@googlemail.com

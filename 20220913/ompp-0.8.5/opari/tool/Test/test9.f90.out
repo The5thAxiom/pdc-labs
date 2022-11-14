@@ -1,0 +1,42 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test9.f90"
+      program test9
+
+      call POMP_Init()
+#line 5 "test9.f90"
+
+      call POMP_Off()
+#line 7 "test9.f90"
+
+      call POMP_Begin(31)
+#line 10 "test9.f90"
+
+      call POMP_Parallel_fork(32)
+#line 11 "test9.f90"
+      !$omp parallel
+      call POMP_Parallel_begin(32)
+#line 12 "test9.f90"
+      i = 9
+      call POMP_Barrier_enter(32)
+!$omp barrier
+      call POMP_Barrier_exit(32)
+      call POMP_Parallel_end(32)
+#line 13 "test9.f90"
+      !$omp end parallel
+      call POMP_Parallel_join(32)
+#line 14 "test9.f90"
+
+      call POMP_End(31)
+#line 16 "test9.f90"
+
+      call POMP_On()
+#line 18 "test9.f90"
+
+      call POMP_Finalize()
+#line 20 "test9.f90"
+
+      end

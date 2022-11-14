@@ -1,0 +1,74 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "testG.c.opari.inc"
+#line 1 "testG.c"
+#include <stdio.h>
+
+int main() {
+  int me, glob;
+
+POMP_Parallel_fork(&omp_rd_50);
+#line 7 "testG.c"
+  #pragma omp parallel private(me,glob) POMP_DLIST_00050
+{ POMP_Parallel_begin(&omp_rd_50);
+#line 8 "testG.c"
+  {
+    me = omp_get_thread_num();
+    printf("hello from %d\n", me);
+
+POMP_Single_enter(&omp_rd_51);
+#line 12 "testG.c"
+    #pragma omp single copyprivate(glob)
+{ POMP_Single_begin(&omp_rd_51);
+#line 13 "testG.c"
+    {
+      glob = me;
+      printf("single1 from %d\n", me);
+    }
+POMP_Single_end(&omp_rd_51); }
+POMP_Barrier_enter(&omp_rd_51);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_51);
+POMP_Single_exit(&omp_rd_51);
+#line 17 "testG.c"
+
+    printf("hello from %d\n", me);
+
+POMP_Single_enter(&omp_rd_52);
+#line 20 "testG.c"
+    #pragma omp single  nowait
+{ POMP_Single_begin(&omp_rd_52);
+#line 21 "testG.c"
+    {
+      printf("single2 from %d\n", me);
+    }
+POMP_Single_end(&omp_rd_52); }
+POMP_Barrier_enter(&omp_rd_52);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_52);
+POMP_Single_exit(&omp_rd_52);
+#line 24 "testG.c"
+
+POMP_Single_enter(&omp_rd_53);
+#line 25 "testG.c"
+    #pragma omp single nowait
+{ POMP_Single_begin(&omp_rd_53);
+#line 26 "testG.c"
+    {
+      printf("single3 from %d\n", me);
+    }
+POMP_Single_end(&omp_rd_53); }
+POMP_Single_exit(&omp_rd_53);
+#line 29 "testG.c"
+
+  }
+POMP_Barrier_enter(&omp_rd_50);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_50);
+POMP_Parallel_end(&omp_rd_50); }
+POMP_Parallel_join(&omp_rd_50);
+#line 31 "testG.c"
+}

@@ -1,0 +1,8 @@
+#include "pomp_lib.h"
+
+struct ompregdescr omp_rd_51 = {
+  "paralleldo", "", 0, "test3.f", 3, 4, 8, 12
+};
+
+#define POMP_DLIST_00051 shared(omp_rd_51)
+

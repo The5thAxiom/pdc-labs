@@ -1,0 +1,66 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test1.c.opari.inc"
+#line 1 "test1.c"
+#include <stdio.h>
+#ifdef _OPENMP
+#endif
+
+int main() {
+  omp_lock_t l;
+
+  printf("before...\n");
+
+POMP_Parallel_fork(&omp_rd_1);
+#line 11 "test1.c"
+  #pragma omp parallel POMP_DLIST_00001
+{ POMP_Parallel_begin(&omp_rd_1);
+#line 12 "test1.c"
+  {{
+    printf("parallel 1...\n");
+  }}
+POMP_Barrier_enter(&omp_rd_1);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_1);
+POMP_Parallel_end(&omp_rd_1); }
+POMP_Parallel_join(&omp_rd_1);
+#line 14 "test1.c"
+     //end
+
+  //#pragma omp parallel
+  {
+    //printf("parallel 1...\n");
+  }
+
+/*
+  #pragma omp parallel
+  {
+    printf("parallel 1...\n");
+  }
+*/
+
+POMP_Parallel_fork(&omp_rd_2);
+#line 28 "test1.c"
+  #                 pragma \
+                    omp \
+                    parallel POMP_DLIST_00002
+{ POMP_Parallel_begin(&omp_rd_2);
+#line 31 "test1.c"
+  {
+    printf("parallel 2...\n");
+  }
+POMP_Barrier_enter(&omp_rd_2);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_2);
+POMP_Parallel_end(&omp_rd_2); }
+POMP_Parallel_join(&omp_rd_2);
+#line 34 "test1.c"
+
+  //omp_init_lock();
+  POMP_Init_lock(&l);
+
+  printf("after...\n");
+}

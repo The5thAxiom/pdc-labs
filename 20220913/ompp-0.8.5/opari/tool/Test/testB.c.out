@@ -1,0 +1,126 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "testB.c.opari.inc"
+#line 1 "testB.c"
+int main() {
+  int i;
+
+POMP_Parallel_fork(&omp_rd_28);
+#line 4 "testB.c"
+  #pragma omp parallel POMP_DLIST_00028
+{ POMP_Parallel_begin(&omp_rd_28);
+#line 5 "testB.c"
+  {
+POMP_For_enter(&omp_rd_29);
+#line 6 "testB.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i)
+    {
+    }
+POMP_Barrier_enter(&omp_rd_29);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_29);
+POMP_For_exit(&omp_rd_29);
+#line 10 "testB.c"
+  }
+POMP_Barrier_enter(&omp_rd_28);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_28);
+POMP_Parallel_end(&omp_rd_28); }
+POMP_Parallel_join(&omp_rd_28);
+#line 11 "testB.c"
+
+POMP_Parallel_fork(&omp_rd_30);
+#line 12 "testB.c"
+  #pragma omp parallel POMP_DLIST_00030
+{ POMP_Parallel_begin(&omp_rd_30);
+#line 13 "testB.c"
+POMP_For_enter(&omp_rd_31);
+#line 13 "testB.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i)
+    {
+    }
+POMP_Barrier_enter(&omp_rd_31);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_31);
+POMP_For_exit(&omp_rd_31);
+#line 17 "testB.c"
+POMP_Barrier_enter(&omp_rd_30);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_30);
+POMP_Parallel_end(&omp_rd_30); }
+POMP_Parallel_join(&omp_rd_30);
+#line 17 "testB.c"
+
+POMP_Parallel_fork(&omp_rd_32);
+#line 18 "testB.c"
+  #pragma omp parallel POMP_DLIST_00032
+{ POMP_Parallel_begin(&omp_rd_32);
+#line 19 "testB.c"
+  {
+POMP_For_enter(&omp_rd_33);
+#line 20 "testB.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i)
+      ;
+POMP_Barrier_enter(&omp_rd_33);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_33);
+POMP_For_exit(&omp_rd_33);
+#line 23 "testB.c"
+  }
+POMP_Barrier_enter(&omp_rd_32);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_32);
+POMP_Parallel_end(&omp_rd_32); }
+POMP_Parallel_join(&omp_rd_32);
+#line 24 "testB.c"
+
+POMP_Parallel_fork(&omp_rd_34);
+#line 25 "testB.c"
+  #pragma omp parallel POMP_DLIST_00034
+{ POMP_Parallel_begin(&omp_rd_34);
+#line 26 "testB.c"
+  {
+POMP_For_enter(&omp_rd_35);
+#line 27 "testB.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i) ;
+POMP_Barrier_enter(&omp_rd_35);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_35);
+POMP_For_exit(&omp_rd_35);
+#line 29 "testB.c"
+  }
+POMP_Barrier_enter(&omp_rd_34);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_34);
+POMP_Parallel_end(&omp_rd_34); }
+POMP_Parallel_join(&omp_rd_34);
+#line 30 "testB.c"
+
+POMP_Parallel_fork(&omp_rd_36);
+#line 31 "testB.c"
+  #pragma omp parallel POMP_DLIST_00036
+{ POMP_Parallel_begin(&omp_rd_36);
+#line 32 "testB.c"
+POMP_For_enter(&omp_rd_37);
+#line 32 "testB.c"
+    #pragma omp for nowait
+    for (i=0; i<4; ++i) ;
+POMP_Barrier_enter(&omp_rd_37);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_37);
+POMP_For_exit(&omp_rd_37);
+#line 34 "testB.c"
+POMP_Barrier_enter(&omp_rd_36);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_36);
+POMP_Parallel_end(&omp_rd_36); }
+POMP_Parallel_join(&omp_rd_36);
+#line 34 "testB.c"
+}

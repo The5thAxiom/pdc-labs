@@ -1,0 +1,59 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "testF.f90"
+subroutine foo(b)
+  logical b
+  integer i
+
+      call POMP_Begin(41)
+#line 6 "testF.f90"
+  i = 4
+  if ( b ) then
+      call POMP_End(41)
+#line 9 "testF.f90"
+    return
+  end if
+
+      call POMP_Parallel_fork(42)
+#line 12 "testF.f90"
+  !$omp parallel
+      call POMP_Parallel_begin(42)
+#line 13 "testF.f90"
+
+      call POMP_Begin(43)
+#line 15 "testF.f90"
+      call POMP_Begin(44)
+#line 16 "testF.f90"
+
+      call POMP_Barrier_enter(45)
+#line 17 "testF.f90"
+    !$omp barrier
+      call POMP_Barrier_exit(45)
+#line 18 "testF.f90"
+
+      call POMP_End(44)
+#line 20 "testF.f90"
+      call POMP_End(43)
+#line 21 "testF.f90"
+
+      call POMP_Barrier_enter(42)
+!$omp barrier
+      call POMP_Barrier_exit(42)
+      call POMP_Parallel_end(42)
+#line 22 "testF.f90"
+  !$omp end parallel
+      call POMP_Parallel_join(42)
+#line 23 "testF.f90"
+
+  if ( b ) then
+      call POMP_End(41)
+#line 26 "testF.f90"
+    return
+  end if
+
+      call POMP_End(41)
+#line 30 "testF.f90"
+end subroutine foo

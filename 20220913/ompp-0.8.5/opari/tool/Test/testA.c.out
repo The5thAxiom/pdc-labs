@@ -1,0 +1,33 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "testA.c.opari.inc"
+#line 1 "testA.c"
+int main() {
+  int i;
+
+POMP_Barrier_enter(&omp_rd_26);
+#line 4 "testA.c"
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_26);
+#line 5 "testA.c"
+
+#line 7 "testA.c"
+
+#pragma pomp inst begin(foo)
+
+#pragma omp parallel
+      i = 9;
+
+#pragma pomp inst end(foo)
+
+#line 16 "testA.c"
+
+POMP_Barrier_enter(&omp_rd_27);
+#line 17 "testA.c"
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_27);
+#line 18 "testA.c"
+}

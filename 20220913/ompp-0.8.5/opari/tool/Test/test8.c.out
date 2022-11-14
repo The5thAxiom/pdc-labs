@@ -1,0 +1,42 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#include "test8.c.opari.inc"
+#line 1 "test8.c"
+int main() {
+  int i;
+
+POMP_Init();
+#line 5 "test8.c"
+
+POMP_Off();
+#line 7 "test8.c"
+
+POMP_Begin(&omp_rd_22);
+#line 9 "test8.c"
+
+POMP_Parallel_fork(&omp_rd_23);
+#line 10 "test8.c"
+#pragma omp parallel POMP_DLIST_00023
+{ POMP_Parallel_begin(&omp_rd_23);
+#line 11 "test8.c"
+      i = 9;
+POMP_Barrier_enter(&omp_rd_23);
+#pragma omp barrier
+POMP_Barrier_exit(&omp_rd_23);
+POMP_Parallel_end(&omp_rd_23); }
+POMP_Parallel_join(&omp_rd_23);
+#line 12 "test8.c"
+
+POMP_End(&omp_rd_22);
+#line 14 "test8.c"
+
+POMP_On();
+#line 16 "test8.c"
+
+POMP_Finalize();
+#line 18 "test8.c"
+
+}

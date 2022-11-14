@@ -1,0 +1,59 @@
+#ifdef _POMP
+#  undef _POMP
+#endif
+#define _POMP 200110
+
+#line 1 "test1.f"
+      program test1
+      gg = 9
+c     comment
+      call POMP_Parallel_fork(46)
+#line 4 "test1.f"
+c$omp parallel
+      call POMP_Parallel_begin(46)
+#line 5 "test1.f"
+      call POMP_Barrier_enter(47)
+#line 5 "test1.f"
+*$omp barrier
+      call POMP_Barrier_exit(47)
+#line 6 "test1.f"
+      call POMP_Barrier_enter(48)
+#line 6 "test1.f"
+!$omp barrier
+      call POMP_Barrier_exit(48)
+#line 7 "test1.f"
+c $omp no
+!!$omp mo
+      call POMP_Barrier_enter(46)
+!$omp barrier
+      call POMP_Barrier_exit(46)
+      call POMP_Parallel_end(46)
+#line 9 "test1.f"
+!$omp end
+!$omp+
+!$omp+parallel
+      call POMP_Parallel_join(46)
+#line 12 "test1.f"
+      call POMP_Atomic_enter(49)
+#line 12 "test1.f"
+!$omp atomic
+      gg = 7
+      call POMP_Atomic_exit(49)
+#line 14 "test1.f"
+      call POMP_Parallel_fork(50)
+#line 14 "test1.f"
+!$omp    parallel
+!$omp&   default(shared)
+      call POMP_Parallel_begin(50)
+#line 16 "test1.f"
+      gg = 7
+      call POMP_Barrier_enter(50)
+!$omp barrier
+      call POMP_Barrier_exit(50)
+      call POMP_Parallel_end(50)
+#line 17 "test1.f"
+!$omp    end
+!$omp+   parallel
+      call POMP_Parallel_join(50)
+#line 19 "test1.f"
+      end
